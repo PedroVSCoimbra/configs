@@ -1,0 +1,7 @@
+clear
+clc
+
+source /usr/share/octave/site/m/startup/octaverc;
+pkg prefix ~/.local/share/octave/packages ~/.local/share/octave/packages;
+pkg local_list /home/pedro/.local/share/octave/octave_packages;
+% graphics_toolkit ("gnuplot")
