@@ -1,0 +1,4 @@
+[[ -f ~/.config/X11/xresources ]] && xrdb -merge -I$HOME ~/.config/X11/xresources
+setxkbmap -layout us -variant altgr-intl -option nodeadkeys
+[[ -f ~/.config/X11/xmodmap ]] && xmodmap ~/.config/X11/xmodmap
+exec startxfce4
