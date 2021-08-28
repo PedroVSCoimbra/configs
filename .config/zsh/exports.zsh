@@ -14,6 +14,7 @@ export GEM_HOME="$XDG_DATA_HOME"/gem
 export GEM_SPEC_CACHE="$XDG_CACHE_HOME"/gem
 export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
 export ELINKS_CONFDIR="$XDG_CONFIG_HOME"/elinks
+export KEEP_NETGEN_OUTPUT=ture
 export SU2_RUN="$HOME/cfd/su2/bin"
 export SU2_HOME="$HOME/cfd/su2"
 export SU2_MPI_COMMAND="mpirun -np %i %s"
