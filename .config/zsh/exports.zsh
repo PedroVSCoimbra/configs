@@ -96,3 +96,4 @@ export PATH=$PATH:/home/pedro/faculdade/02_ic/02_numerical/aulas/rodrigo_moura/0
 export PATH=$PATH:/home/pedro/dados/cfd/su2/pointwise
 export PATH=$PATH:/home/pedro/dados/crypto/teamredminer
 export PATH=$PATH:/home/pedro/.local/bin
+export PATH=$PATH:/home/pedro/dados/cfd/salome
