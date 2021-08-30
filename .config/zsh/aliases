@@ -223,5 +223,8 @@ stop='kill -TSTP'
 alias con='/usr/bin/git --git-dir=/home/pedro/dados/configs/configsPC --work-tree=$HOME'
 alias cons='/usr/bin/git --git-dir=/home/pedro/dados/configs/scripts-bare --work-tree=$HOME'
 
+# Gdrive
+alias gd='GDRIVE_CONFIG_DIR="/home/pedro/.config/gdrive" gdrive'
+
 # SSH
 # alias sstokes='ssh -p 2126 pedrovsc2@200.145.244.94'
