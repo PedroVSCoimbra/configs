@@ -225,6 +225,6 @@ alias cons='/usr/bin/git --git-dir=/home/pedro/dados/configs/scripts-bare --work
 
 # Gdrive
 alias gd='GDRIVE_CONFIG_DIR="/home/pedro/.config/gdrive" gdrive'
-alias sync_cases='GDRIVE_CONFIG_DIR="/home/pedro/.config/gdrive" gdrive /home/pedro/dados/cfd/su2/aepw 1OnS1nehVlkC8_ENq9viIwQdyy5Cl_SS-'
+alias sync_cases_down='GDRIVE_CONFIG_DIR="/home/pedro/.config/gdrive" gdrive sync download /home/pedro/dados/cfd/su2/aepw 1OnS1nehVlkC8_ENq9viIwQdyy5Cl_SS-'
 # SSH
 # alias sstokes='ssh -p 2126 pedrovsc2@200.145.244.94'
