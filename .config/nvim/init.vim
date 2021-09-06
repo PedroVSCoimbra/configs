@@ -691,23 +691,23 @@ augroup latex
   autocmd FileType markdown nnoremap <buffer> å :source $MYVIMRC \| se ft=markdown <cr>
   " Mappins for the refs file
   autocmd FileType tex,markdown,rmd nnoremap <buffer> Ê :vsp /home/pedro/dados/faculdade/bibliografia/bibliography.bib <CR>
-  autocmd FileType tex nnoremap <buffer> ê :!sudo bibtex %:r <CR>
+  autocmd FileType tex nnoremap <buffer> ê :!bibtex %:r <CR>
   autocmd FileType tex nnoremap <buffer> <Leader>0 I%<Esc>
   autocmd FileType tex nnoremap <buffer> <Leader>0 I%<Esc>
-  autocmd FileType tex nnoremap <buffer> ã :w<CR>:!sudo pdflatex -interaction=nonstopmode % <CR> <Esc>
-  autocmd FileType tex nnoremap <buffer> Ã :w<CR>:!sudo pdflatex % <cr>
-  autocmd FileType tex inoremap <buffer> <S-Home> <esc>:w<CR>:!sudo pdflatex -interaction=nonstopmode % <CR> <Esc>a
+  autocmd FileType tex nnoremap <buffer> ã :w<CR>:!pdflatex -interaction=nonstopmode % <CR> <Esc>
+  autocmd FileType tex nnoremap <buffer> Ã :w<CR>:!pdflatex % <cr>
+  autocmd FileType tex inoremap <buffer> <S-Home> <esc>:w<CR>:!pdflatex -interaction=nonstopmode % <CR> <Esc>a
   " Mappings to open the pdf
   autocmd FileType tex,markdown,rmd nnoremap <buffer> <localleader>z :!zathura %:r.pdf & <CR> <Esc>
   autocmd FileType tex,markdown,rmd nnoremap <buffer> æ :!zathura %:r.pdf & <CR> <Esc>
   autocmd Filetype markdown,rmd nnoremap <buffer> <leader>w yiWi[<esc>Ea](<esc>pa)
-  " autocmd Filetype markdown,rmd,vimwiki nnoremap <buffer> ã :w<cr>:vsplit term://sudo echo \" require(rmarkdown); render('<c-r>%',encoding = 'UTF-8')\" \\| sudo R --vanilla<cr>G<c-w><c-w><cr>
-  autocmd Filetype markdown,rmd,vimwiki inoremap <buffer> Ã <esc>:w<cr>:vsplit term://sudo echo \" require(rmarkdown); render('<c-r>%',encoding = 'UTF-8')\" \\| sudo R --vanilla<cr>G<c-w><c-w><cr>i
-  autocmd Filetype markdown,rmd,vimwiki nnoremap <buffer> Ã :w<CR>:!sudo echo<space>"<space>require(rmarkdown);<space>render('<c-r>%',encoding = 'UTF-8')"<space>\|<space>sudo R<space>--vanilla
+  " autocmd Filetype markdown,rmd,vimwiki nnoremap <buffer> ã :w<cr>:vsplit term://echo \" require(rmarkdown); render('<c-r>%',encoding = 'UTF-8')\" \\| R --vanilla<cr>G<c-w><c-w><cr>
+  autocmd Filetype markdown,rmd,vimwiki inoremap <buffer> Ã <esc>:w<cr>:vsplit term://echo \" require(rmarkdown); render('<c-r>%',encoding = 'UTF-8')\" \\| R --vanilla<cr>G<c-w><c-w><cr>i
+  autocmd Filetype markdown,rmd,vimwiki nnoremap <buffer> Ã :w<CR>:!echo<space>"<space>require(rmarkdown);<space>render('<c-r>%',encoding = 'UTF-8')"<space>\|<space>R<space>--vanilla
   autocmd filetype tex,markdown,rmd nnoremap <buffer> <leader>k :silent !convert %:r.pdf %:r.jpg <cr>
   " autocmd Filetype markdown,rmd,vimwiki nnoremap <buffer> ã :w \| exe ":terminal echo \" require(rmarkdown); render('Notas_de_Aula_Controle.md',encoding = 'UTF-8')\" \| R --vanilla" \| bp<cr>
   " autocmd Filetype markdown,rmd,vimwiki nnoremap <buffer> ã :w \| exe ":terminal echo \" require(rmarkdown); render('Notas_de_Aula_Controle.md',encoding = 'UTF-8')\" \| R --vanilla" \| bp<cr>
-  autocmd Filetype markdown,rmd,vimwiki nnoremap <buffer> ã :w<CR>:!echo<space>"<space>require(rmarkdown);<space>render('<c-r>%',encoding = 'UTF-8')"<space>\|<space>sudo R<space>--vanilla<enter>
+  autocmd Filetype markdown,rmd,vimwiki nnoremap <buffer> ã :w<CR>:!echo<space>"<space>require(rmarkdown);<space>render('<c-r>%',encoding = 'UTF-8')"<space>\|<space>R<space>--vanilla<enter>
   " Insert €
   " Figures
   autocmd FileType tex,markdown,rmd inoremap <buffer> ;lf <c-g>u\begin{figure}[H]<cr>\centering<cr>\includegraphics[width=0.<++> \textwidth]{<++>}<cr>\caption{<++>}<cr>\label{<++>}<cr>\end{figure}<enter><++><esc>5k<Leader><Leader>
