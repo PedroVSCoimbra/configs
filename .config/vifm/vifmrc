@@ -111,6 +111,7 @@ mark 9 ~/faculdade/01_curso/09/
 mark d ~/dados/
 mark c ~/dados/cfd/
 mark s ~/dados/cfd/su2/
+mark o ~/dados/cfd/openfoam/
 mark i ~/faculdade/02_ic/
 mark e ~/faculdade/02_ic/01_experimental/
 mark n ~/faculdade/02_ic/02_numerical/
