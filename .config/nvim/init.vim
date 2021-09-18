@@ -690,6 +690,7 @@ augroup latex
   autocmd FileType rmd nnoremap <buffer> å :Delview<cr>:source $MYVIMRC<cr>:se ft=rmd <cr>
   autocmd FileType vimwiki nnoremap <buffer> å :Delview<cr>:source $MYVIMRC<cr>:se ft=vimwiki <cr>
   autocmd FileType markdown nnoremap <buffer> å :source $MYVIMRC \| se ft=markdown <cr>
+  "" Load Wikki mappings
   autocmd FileType tex nnoremap <buffer> Å :source /home/pedro/.config/nvim/latex/wikki.vim <cr>
   "" Commenting lines
   autocmd FileType tex nnoremap <buffer> <Leader>0 I%<Esc>
@@ -715,10 +716,10 @@ augroup latex
   autocmd Filetype markdown,rmd,vimwiki nnoremap <buffer> ã :w<CR>:!echo<space>"<space>require(rmarkdown);<space>render('<c-r>%',encoding = 'UTF-8')"<space>\|<space>R<space>--vanilla<enter>
   " Insert €
   " Figures
-  autocmd FileType tex,markdown,rmd inoremap <buffer> ;lf <c-g>u\begin{figure}[H]<cr>\centering<cr>\includegraphics[width=0.<++> \textwidth]{<++>}<cr>\caption{<++>}<cr>\label{<++>}<cr>\end{figure}<enter><++><esc>5k<Leader><Leader>
-  autocmd FileType tex,markdown,rmd inoremap <buffer> ;llf <c-g>u\begin{figure}[H]<cr>\subfigure[<++> \label{<++>}]{<cr>\includegraphics[width=0.5 \textwidth]{<++>}}<cr>\subfigure[<++> \label{<++>}]<cr>{\includegraphics[width=0.5 \textwidth]{<++>}}<cr>\caption{<++>}<cr>\end{figure}<enter><++><esc>vip=
-  " Tables €
-  autocmd FileType tex,markdown,rmd inoremap <buffer> ;ta <c-g>u\begin{table}[H]<cr>\begin{center}<cr>\caption{<++>}<cr>\begin{tabular}{ccc}<cr>\hline<cr><++> & <++> & <++> \\ \hline\hline<cr> <++> & <++> & <++> \\<cr> <++> & <++> & <++> \\<cr>\hline<cr>\end{tabular}<cr>\label{<++>}<cr>\end{center}<cr>\end{table}<cr><++><esc>vip=
+  " autocmd FileType tex,markdown,rmd inoremap <buffer> ;lf <c-g>u\begin{figure}[H]<cr>\centering<cr>\includegraphics[width=0.<++> \textwidth]{<++>}<cr>\caption{<++>}<cr>\label{<++>}<cr>\end{figure}<enter><++><esc>5k<Leader><Leader>
+  " autocmd FileType tex,markdown,rmd inoremap <buffer> ;llf <c-g>u\begin{figure}[H]<cr>\subfigure[<++> \label{<++>}]{<cr>\includegraphics[width=0.5 \textwidth]{<++>}}<cr>\subfigure[<++> \label{<++>}]<cr>{\includegraphics[width=0.5 \textwidth]{<++>}}<cr>\caption{<++>}<cr>\end{figure}<enter><++><esc>vip=
+  " " Tables €
+  " autocmd FileType tex,markdown,rmd inoremap <buffer> ;ta <c-g>u\begin{table}[H]<cr>\begin{center}<cr>\caption{<++>}<cr>\begin{tabular}{ccc}<cr>\hline<cr><++> & <++> & <++> \\ \hline\hline<cr> <++> & <++> & <++> \\<cr> <++> & <++> & <++> \\<cr>\hline<cr>\end{tabular}<cr>\label{<++>}<cr>\end{center}<cr>\end{table}<cr><++><esc>vip=
   " ¥
   " Citation and Referencing €
   autocmd FileType tex,markdown,rmd inoremap <buffer> ;ci <c-g>u\cite{}<++><Esc>T{i
