@@ -682,6 +682,7 @@ augroup END
 " autocmd VimLeave *.tex !rm -f *.out *.log *.aux *.blg *.bbl
 augroup latex
   autocmd!
+  # General latex mappings
   autocmd FileType tex set foldmethod=expr
   autocmd FileType tex set foldexpr=vimtex#fold#level(v:lnum)
   autocmd FileType tex set foldtext=vimtex#fold#text()
@@ -689,11 +690,15 @@ augroup latex
   autocmd FileType rmd nnoremap <buffer> å :Delview<cr>:source $MYVIMRC<cr>:se ft=rmd <cr>
   autocmd FileType vimwiki nnoremap <buffer> å :Delview<cr>:source $MYVIMRC<cr>:se ft=vimwiki <cr>
   autocmd FileType markdown nnoremap <buffer> å :source $MYVIMRC \| se ft=markdown <cr>
+  autocmd FileType tex nnoremap <buffer> Å :source /home/pedro/.config/nvim/latex/wikki.vim <cr>
+  "" Commenting lines
+  autocmd FileType tex nnoremap <buffer> <Leader>0 I%<Esc>
+  autocmd FileType tex nnoremap <buffer> <Leader>0 I%<Esc>
+
   " Mappins for the refs file
-  autocmd FileType tex,markdown,rmd nnoremap <buffer> Ê :vsp /home/pedro/dados/faculdade/bibliografia/bibliography.bib <CR>
   autocmd FileType tex nnoremap <buffer> ê :!bibtex %:r <CR>
-  autocmd FileType tex nnoremap <buffer> <Leader>0 I%<Esc>
-  autocmd FileType tex nnoremap <buffer> <Leader>0 I%<Esc>
+  autocmd FileType tex,markdown,rmd nnoremap <buffer> Ê :vsp /home/pedro/dados/faculdade/bibliografia/bibliography.bib <CR>
+  " Compiling
   autocmd FileType tex nnoremap <buffer> ã :w<CR>:!pdflatex -interaction=nonstopmode % <CR> <Esc>
   autocmd FileType tex nnoremap <buffer> Ã :w<CR>:!pdflatex % <cr>
   autocmd FileType tex inoremap <buffer> <S-Home> <esc>:w<CR>:!pdflatex -interaction=nonstopmode % <CR> <Esc>a
@@ -795,7 +800,7 @@ nnoremap <leader>3h d/\a<cr>\hyssBi\subsubsection<esc>
 
 "Make a figure using the original title €
 "map ;lf dwd/\a<cr>0Di\begin{figure}[H]<cr>\centering<cr>\caption{}<cr>\includegraphics[width=1.0 \textwidth]{}<cr>\label{<++>}<cr>\end{figure}<enter><++><esc><leader>h4kf{pjf/a
-map ;lf <c-g>df:Di\begin{figure}[H]<cr>\centering<cr>\caption{}<cr>\includegraphics[width=0.5 \textwidth]{}<cr>\label{<++>}<cr>\end{figure}<enter><++><esc><leader>h4kf{pj$i
+" map ;lf <c-g>df:Di\begin{figure}[H]<cr>\centering<cr>\caption{}<cr>\includegraphics[width=0.5 \textwidth]{}<cr>\label{<++>}<cr>\end{figure}<enter><++><esc><leader>h4kf{pj$i
   " ¥
 
 " Formatar texto €
