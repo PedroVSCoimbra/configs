@@ -682,7 +682,7 @@ augroup END
 " autocmd VimLeave *.tex !rm -f *.out *.log *.aux *.blg *.bbl
 augroup latex
   autocmd!
-  # General latex mappings
+  "" General latex mappings
   autocmd FileType tex set foldmethod=expr
   autocmd FileType tex set foldexpr=vimtex#fold#level(v:lnum)
   autocmd FileType tex set foldtext=vimtex#fold#text()
