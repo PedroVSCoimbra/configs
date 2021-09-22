@@ -252,7 +252,7 @@ filextype *.cbz
 "         \ paraview %f &,
 
 " cgns
-filextype *.cgns
+filextype *.cgns,*.foam
         \ {View in paraview}
         \ paraview %f &,
 
