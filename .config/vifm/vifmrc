@@ -565,7 +565,7 @@ nnoremap yf :!echo %c:p | xclip -selection clipboard %i<cr>
 " Mappings for faster renaming
 nnoremap I cw<c-a>
 nnoremap C cw<c-u>
-nnoremap cc cW
+nnoremap cc cW<c-u>
 "nnoremap cc cW
 nnoremap A cw
 
