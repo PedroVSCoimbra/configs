@@ -703,7 +703,7 @@ augroup latex
   autocmd FileType tex nnoremap <buffer> ã :w<CR>:!pdflatex -interaction=nonstopmode % <CR> <Esc>
   autocmd FileType tex nnoremap <buffer> Ã :w<CR>:!pdflatex % <cr>
   autocmd FileType tex inoremap <buffer> <S-Home> <esc>:w<CR>:!pdflatex -interaction=nonstopmode % <CR> <Esc>a
-  autocmd FileType tex inoremap <buffer> Æ :!dragon-drag-and-drop -a -x %:r.pdf<cr>
+  autocmd FileType markdown,tex,rmd nnoremap <buffer> Æ :!dragon-drag-and-drop -a -x %:r.pdf<cr>
   " Mappings to open the pdf
   autocmd FileType tex,markdown,rmd nnoremap <buffer> <localleader>z :!zathura %:r.pdf & <CR> <Esc>
   autocmd FileType tex,markdown,rmd nnoremap <buffer> æ :!zathura %:r.pdf & <CR> <Esc>
