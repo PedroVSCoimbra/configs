@@ -610,6 +610,7 @@ map ç :!dtrx %c<cr>
 " Execute python script
 map ô :!python %c<cr>
 map é :!./%c<cr>
+map ó :!source /opt/OpenFOAM/OpenFOAM-v2012/etc/bashrc && ./%c<cr>
 nmap ï ZZ
 
 " Force open in vim
