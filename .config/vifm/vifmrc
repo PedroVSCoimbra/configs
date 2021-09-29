@@ -546,6 +546,9 @@ map < :!vifmimg dec<CR>
 " Start shell in current directory
 nnoremap s :shell<cr>
 
+" Zip command atalho
+map æ :zip<cr>
+
 " Display sorting dialog
 nnoremap S :sort<cr>
 
