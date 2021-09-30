@@ -614,7 +614,7 @@ map ç :!dtrx %c<cr>
 map ô :!python %c<cr>
 map é :!./%c<cr>
 map ó :!source /opt/OpenFOAM/OpenFOAM-v2012/etc/bashrc && ./%c<cr>
-map ® :!source /opt/OpenFOAM/OpenFOAM-v2012/etc/bashrc && paraFoam <cr>
+map ® :!source /opt/OpenFOAM/OpenFOAM-v2012/etc/bashrc && paraFoam &<cr>
 map Ó :!source /opt/OpenFOAM/OpenFOAM-v2012/etc/bashrc && 
 nmap ï ZZ
 
