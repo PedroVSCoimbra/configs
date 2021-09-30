@@ -440,7 +440,7 @@ filetype *.7z
 fileviewer *.7z 7z l %c
 
 " Office files
-filextype *.odt,*.doc,*.docx,*.xls,*.xlsx,*.odp,*.pptx,*.ppt, *.rtf, libreoffice %f &
+filextype *.odt,*.doc,*.docx,*.xls,*.xlsx,*.odp,*.pptx,*.ppt, *.rtf, libreoffice %f 2> /dev/null &
 "fileviewer *.doc catdoc %c
 "fileviewer *.docx docx2txt.pl %f -
 
