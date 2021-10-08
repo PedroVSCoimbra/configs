@@ -320,7 +320,7 @@ fileviewer *.avi,*.mp4,*.wmv,*.*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,
 " Inkscape
 filextype *.svg
         \ {Open with Inkscape}
-        \ inkscape %f & 2>&1,
+        \ inkscape %f  2>&1 &,
 
 " Web
 filextype *.html,*.htm
