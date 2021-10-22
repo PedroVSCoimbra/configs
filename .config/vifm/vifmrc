@@ -277,7 +277,7 @@ filextype *.vtu,*.vtk,*.stl
 " Salome project
 filextype *.hdf
         \ {View in Salome}
-        \ salome %f &,
+        \ salome %f 2> /dev/null &,
 
 " FreeCAD project
 filextype *.FCStd
