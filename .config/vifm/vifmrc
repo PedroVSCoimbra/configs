@@ -112,6 +112,7 @@ mark d ~/dados/
 mark w ~/dados/wikki/
 mark c ~/dados/cfd/
 mark s ~/dados/cfd/su2/
+mark m /home/pedro/dados/cfd/mesh/salome/
 mark o ~/dados/cfd/openfoam/
 mark i ~/faculdade/02_ic/
 mark e ~/faculdade/02_ic/01_experimental/
