@@ -613,6 +613,7 @@ map <C-v> <C-w>v
 map ç :!dtrx %c<cr>
 " Execute python script
 map ô :!python %c<cr>
+map Ô :!python %c 
 map é :!./%c<cr>
 map ó :!source /opt/OpenFOAM/OpenFOAM-v2012/etc/bashrc && ./%c<cr>
 map ® :!source /opt/OpenFOAM/OpenFOAM-v2012/etc/bashrc && paraFoam 2> /dev/null &<cr>
