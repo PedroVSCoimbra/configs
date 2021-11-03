@@ -259,8 +259,7 @@ filextype *.cgns,*.foam,*.pvsm
 " exe
 filextype *.exe
         \ {View in paraview}
-        \ wine %f &,
-
+        \ wine %f 2> /dev/null,
 
 " igs
 filextype *.igs,*.stp,.*step,*.FCStd
