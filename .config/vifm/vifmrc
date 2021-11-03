@@ -256,6 +256,10 @@ filextype *.cbz
 filextype *.cgns,*.foam,*.pvsm
         \ {View in paraview}
         \ paraview %f &,
+" exe
+filextype *.exe
+        \ {View in paraview}
+        \ wine %f &,
 
 
 " igs
