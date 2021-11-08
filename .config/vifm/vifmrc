@@ -246,9 +246,8 @@ filextype *.cbz
         \ {View in zathura}
         \ zathura %f &,
 
-
 " log
-filextype log.*, *.log
+filextype *.log
         \ {View in less}
         \ less %f &,
 
