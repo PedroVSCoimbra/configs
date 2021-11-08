@@ -247,10 +247,10 @@ filextype *.cbz
         \ zathura %f &,
 
 
-" " stl
-" filextype *.stl
-"         \ {View in paraview}
-"         \ paraview %f &,
+" log
+filextype log.*, *.log
+        \ {View in paraview}
+        \ less %f,
 
 " cgns
 filextype *.cgns,*.foam,*.pvsm
