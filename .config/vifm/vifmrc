@@ -625,7 +625,7 @@ nmap ï ZZ
 
 " Force open in vim
 map <C-l> :!nvim %c<cr>
-map ø :!less %c<cr>
+map ø :!tail -f %c<cr>
 
 " My sets
 set rnu
