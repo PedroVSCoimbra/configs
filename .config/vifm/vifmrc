@@ -249,8 +249,8 @@ filextype *.cbz
 
 " log
 filextype log.*, *.log
-        \ {View in paraview}
-        \ less %f,
+        \ {View in less}
+        \ less %f &,
 
 " cgns
 filextype *.cgns,*.foam,*.pvsm
