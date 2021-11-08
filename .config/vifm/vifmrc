@@ -247,7 +247,7 @@ filextype *.cbz
         \ zathura %f &,
 
 " log
-filextype *.log, log.*
+filextype *.log
         \ {View in less}
         \ less %f,
 
@@ -625,6 +625,7 @@ nmap ï ZZ
 
 " Force open in vim
 map <C-l> :!nvim %c<cr>
+map ø :!less %c<cr>
 
 " My sets
 set rnu
