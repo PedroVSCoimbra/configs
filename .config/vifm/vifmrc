@@ -618,7 +618,7 @@ map ô :!python %c<cr>
 map Ô :!python %c 
 map é :!./%c<cr>
 " map ó :!source /opt/OpenFOAM/OpenFOAM-v2012/etc/bashrc && ./%c<cr>
-map ó :!rm log.* && source ~/dados/cfd/openfoam/of2006/OpenFOAM-v2006/etc/bashrc ~/dados/cfd/openfoam/of2006/blowout/etc/bashrc && ./%c<cr>
+map ó :!source ~/dados/cfd/openfoam/of2006/OpenFOAM-v2006/etc/bashrc ~/dados/cfd/openfoam/of2006/blowout/etc/bashrc && ./%c<cr>
 map ® :!source /opt/OpenFOAM/OpenFOAM-v2012/etc/bashrc && paraFoam 2> /dev/null &<cr>
 map Ó :!source /opt/OpenFOAM/OpenFOAM-v2012/etc/bashrc && 
 nmap ï ZZ
