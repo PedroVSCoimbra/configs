@@ -247,7 +247,7 @@ filextype *.cbz
         \ zathura %f &,
 
 " log
-filextype *.log, *.empAcidWellFoam
+filextype *.log
         \ {View in less}
         \ less %f,
 
