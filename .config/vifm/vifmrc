@@ -1,19 +1,6 @@
 " vim: filetype=vifm :
-" Sample configuration file for vifm (last updated: 31 August, 2021)
-" You can edit this file by hand.
-" The " character at the beginning of a line comments out the line.
-" Blank lines are ignored.
-" The basic format for each item is shown with an example.
-
 " ------------------------------------------------------------------------------
-
-" Command used to edit files in various contexts.  The default is vim.
-" If you would like to use another vi clone such as Elvis or Vile
-" you will need to change this setting.
-
-set vicmd=vim
-" set vicmd=elvis\ -G\ termcap
-" set vicmd=vile
+set vicmd=nvim
 
 " This makes vifm perform file operations on its own instead of relying on
 " standard utilities like `cp`.  While using `cp` and alike is a more universal
@@ -39,6 +26,11 @@ set history=100
 
 set nofollowlinks
 
+" With this option turned on you can run partially entered commands with
+" unambiguous beginning using :! (e.g. :!Te instead of :!Terminal or :!Te<tab>).
+
+ set fastrun
+
 " Natural sort of (version) numbers within text.
 
 set sortnumbers
@@ -47,19 +39,19 @@ set sortnumbers
 
 set undolevels=100
 
-" Use Vim's format of help file (has highlighting and "hyperlinks").
-" If you would rather use a plain text help file set novimhelp.
+" If you installed the vim.txt help file set vimhelp.
+" If would rather use a plain text help file set novimhelp.
 
-set vimhelp
+set novimhelp
 
 " If you would like to run an executable file when you
-" press Enter, l or Right Arrow, set this.
+" press return on the file name set this.
 
 set norunexec
 
-" List of color schemes to try (picks the first one supported by the terminal)
+" Selected color scheme
 
-colorscheme Default-256 Default
+colorscheme solarized-dark
 
 " Format for displaying time in file list. For example:
 " TIME_STAMP_FORMAT=%m/%d-%H:%M
@@ -111,8 +103,23 @@ set statusline="  Hint: %z%= %A %10u:%-7g %15s %20d  "
 
 " :mark mark /full/directory/path [filename]
 
-mark b ~/bin/
 mark h ~/
+mark f ~/faculdade/01_curso/
+mark 7 ~/faculdade/01_curso/07/
+mark 8 ~/faculdade/01_curso/08/
+mark 9 ~/faculdade/01_curso/09/
+mark d ~/dados/
+mark w ~/dados/wikki/
+mark c ~/dados/cfd/
+mark s ~/dados/cfd/su2/
+mark m /home/pedro/dados/cfd/mesh/salome/
+mark o ~/dados/cfd/openfoam/
+mark i ~/faculdade/02_ic/
+mark e ~/faculdade/02_ic/01_experimental/
+mark n ~/faculdade/02_ic/02_numerical/
+mark b ~/faculdade/bibliografia/
+mark x ~/.local/scripts/
+
 
 " ------------------------------------------------------------------------------
 
@@ -130,12 +137,12 @@ mark h ~/
 
 command! df df -h %m 2> /dev/null
 command! diff vim -d %f %F
-command! zip zip -r %c.zip %f
+command! zip zip -r %f.zip %f
 command! run !! ./%f
 command! make !!make %a
 command! mkcd :mkdir %a | cd %a
 command! vgrep vim "+grep %a"
-command! reload :write | restart full
+command! reload :write | restart
 
 " ------------------------------------------------------------------------------
 
@@ -144,7 +151,7 @@ command! reload :write | restart full
 " :filetype pattern1,pattern2 defaultprogram,program2
 " :fileviewer pattern1,pattern2 consoleviewer
 " The other programs for the file type can be accessed with the :file command
-" The command macros like %f, %F, %d, %D may be used in the commands.
+" The command macros %f, %F, %d, %F may be used in the commands.
 " The %a macro is ignored.  To use a % you must put %%.
 
 " For automated FUSE mounts, you must register an extension with :file[x]type
@@ -164,81 +171,194 @@ command! reload :write | restart full
 "
 " You can also add %CLEAR if you want to clear screen before running FUSE
 " program.
+"
 
-" Pdf
-filextype {*.pdf},<application/pdf> zathura %c %i &, apvlv %c, xpdf %c
-fileviewer {*.pdf},<application/pdf> pdftotext -nopgbrk %c -
+"" Pdf
+filextype *.pdf,*.epub, zathura %c %i &, apvlv %c, xpdf %c
+"fileviewer *.pdf pdftotext -nopgbrk %c -
+"
+
+fileviewer *.pdf
+        \ vifmimg pdfpreview %px %py %pw %ph %c
+        \ %pc
+        \ vifmimg clear
+
+fileviewer *.cbz
+        \ vifmimg pdfpreview %px %py %pw %ph %c
+        \ %pc
+        \ vifmimg clear
+
+
+fileviewer *.epub
+        \ vifmimg epubpreview %px %py %pw %ph %c
+        \ %pc
+        \ vifmimg clear
+
+fileviewer *.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,
+    \*.fl[icv],*.m2v,*.mov,*.webm,*.ts,*.mts,*.m4v,*.r[am],*.qt,*.divx,
+    \ vifmimg videopreview %px %py %pw %ph %c
+    \ %pc
+    \ vifmimg clear
+
+fileviewer *.bmp,*.jpg,*.jpeg,*.png,*.xpm
+    \ vifmimg draw %px %py %pw %ph %c
+    \ %pc
+    \ vifmimg clear
+
+fileviewer *.gif
+    \ vifmimg gifpreview %px %py %pw %ph %c
+    \ %pc
+    \ vifmimg clear
+
+fileviewer *.ico
+    \ vifmimg magickpreview %px %py %pw %ph %c
+    \ %pc
+    \ vifmimg clear
+    
+fileviewer <audio/*>
+    \ vifmimg audio %px %py %pw %ph %c
+    \ %pc
+    \ vifmimg clear
+    
+fileviewer <font/*>
+    \ vifmimg font %px %py %pw %ph %c
+    \ %pc
+    \ vifmimg clear
+
 
 " PostScript
-filextype {*.ps,*.eps,*.ps.gz},<application/postscript>
+filextype *.ps,*.eps,*.ps.gz
         \ {View in zathura}
         \ zathura %f,
         \ {View in gv}
         \ gv %c %i &,
 
+
 " Djvu
-filextype {*.djvu},<image/vnd.djvu>
+filextype *.djvu
         \ {View in zathura}
-        \ zathura %f,
+        \ zathura %f &,
         \ {View in apvlv}
         \ apvlv %f,
 
+" Djvu
+filextype *.cbz
+        \ {View in zathura}
+        \ zathura %f &,
+
+
+" " stl
+" filextype *.stl
+"         \ {View in paraview}
+"         \ paraview %f &,
+
+" cgns
+filextype *.cgns,*.foam,*.pvsm
+        \ {View in paraview}
+        \ paraview %f &,
+" exe
+filextype *.exe
+        \ {View in paraview}
+        \ wine %f 2> /dev/null,
+
+" igs
+filextype *.igs,*.stp,.*step,*.FCStd
+        \ {View in FreeCAD}
+        \ freecad %f &,
+
+" SU2
+filextype *.su2
+        \ {View in su2}
+        \ pointwise %f &,
+
+
+" vtu
+filextype *.vtu,*.vtk,*.stl
+        \ {View in paraview}
+        \ paraview %f &,
+
+" Salome project
+filextype *.hdf
+        \ {View in Salome}
+        \ salome %f 2> /dev/null &,
+
+" FreeCAD project
+filextype *.FCStd
+        \ {View in FreeCAD}
+        \ FreeCAD %f &,
+
+" FreeCAD project
+filextype *.ods
+        \ {View in Calc}
+        \ localc %f &,
+
+
+
+
 " Audio
-filetype {*.wav,*.mp3,*.flac,*.m4a,*.wma,*.ape,*.ac3,*.og[agx],*.spx,*.opus},
-        \<audio/*>
-       \ {Play using ffplay}
-       \ ffplay -nodisp -autoexit %c,
+filetype *.wav,*.mp3,*.flac,*.m4a,*.wma,*.ape,*.ac3,*.og[agx],*.spx,*.opus
+       \ {Play using mpv}
+       \ mpv %c,
        \ {Play using MPlayer}
        \ mplayer %f,
-fileviewer {*.mp3},<audio/mpeg> mp3info
-fileviewer {*.flac},<audio/flac> soxi
+fileviewer *.mp3 mp3info
+fileviewer *.flac soxi
 
 " Video
-filextype {*.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,
-          \*.fl[icv],*.m2v,*.mov,*.webm,*.ts,*.mts,*.m4v,*.r[am],*.qt,*.divx,
-          \*.as[fx]},
-         \<video/*>
+filextype *.avi,*.mp4,*.wmv,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,
+         \*.fl[icv],*.m2v,*.mov,*.webm,*.ts,*.mts,*.m4v,*.r[am],*.qt,*.divx,
+         \*.as[fx]
+        \ {View using mpv}
+        \ mpv %f,
         \ {View using ffplay}
         \ ffplay -fs -autoexit %f,
         \ {View using Dragon}
         \ dragon %f:p,
         \ {View using mplayer}
         \ mplayer %f,
-fileviewer {*.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,
-           \*.fl[icv],*.m2v,*.mov,*.webm,*.ts,*.mts,*.m4v,*.r[am],*.qt,*.divx,
-           \*.as[fx]},
-          \<video/*>
+fileviewer *.avi,*.mp4,*.wmv,*.*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,
+          \*.fl[icv],*.m2v,*.mov,*.webm,*.ts,*.mts,*.m4v,*.r[am],*.qt,*.divx,
+          \*.as[fx]
          \ ffprobe -pretty %c 2>&1
 
+" Inkscape
+filextype *.svg
+        \ {Open with Inkscape}
+        \ inkscape %f  2>&1 &,
+
 " Web
-filextype {*.html,*.htm},<text/html>
-        \ {Open with dwb}
-        \ dwb %f %i &,
-        \ {Open with firefox}
-        \ firefox %f &,
+filextype *.html,*.htm
+        \ {Open with qutebrowser}
+        \ qutebrowser %f &,
         \ {Open with uzbl}
         \ uzbl-browser %f %i &,
-filetype {*.html,*.htm},<text/html> links, lynx
+filetype *.html,*.htm links, lynx
 
 " Object
-filetype {*.o},<application/x-object> nm %f | less
+filetype *.o nm %f | less
 
 " Man page
-filetype {*.[1-8]},<text/troff> man ./%c
-fileviewer {*.[1-8]},<text/troff> man ./%c | col -b
+filetype *.[1-8] man ./%c
+fileviewer *.[1-8] man ./%c | col -b
 
 " Images
-filextype {*.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm},<image/*>
+filextype *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm
         \ {View in sxiv}
-        \ sxiv %f,
+        \ sxiv %f &,
         \ {View in gpicview}
         \ gpicview %c,
         \ {View in shotwell}
         \ shotwell,
-fileviewer {*.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm},<image/*>
-         \ identify %f
+fileviewer *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm
+         \ convert -identify %f -verbose /dev/null
 
-" OpenRaster
+filextype *.xcf
+        \ {View in gimp}
+        \ gimp %f &,
+
+fileviewer *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm
+         \ imgt %px %py %pw %ph %c
+
 filextype *.ora
         \ {Edit in MyPaint}
         \ mypaint %f,
@@ -269,17 +389,16 @@ filetype *.sha512
        \ sha512sum -c %f %S,
 
 " GPG signature
-filetype {*.asc},<application/pgp-signature>
+filetype *.asc
        \ {Check signature}
        \ !!gpg --verify %c,
 
 " Torrent
-filetype {*.torrent},<application/x-bittorrent> ktorrent %f &
-fileviewer {*.torrent},<application/x-bittorrent> dumptorrent -v %c
+filetype *.torrent transmission-gtk %f &
+fileviewer *.torrent dumptorrent -v %c
 
 " FuseZipMount
-filetype {*.zip,*.jar,*.war,*.ear,*.oxt,*.apkg},
-        \<application/zip,application/java-archive>
+filetype *.zip,*.jar,*.war,*.ear,*.oxt,*.apkg
        \ {Mount with fuse-zip}
        \ FUSE_MOUNT|fuse-zip %SOURCE_FILE %DESTINATION_DIR,
        \ {View contents}
@@ -289,24 +408,22 @@ filetype {*.zip,*.jar,*.war,*.ear,*.oxt,*.apkg},
 fileviewer *.zip,*.jar,*.war,*.ear,*.oxt zip -sf %c
 
 " ArchiveMount
-filetype {*.tar,*.tar.bz2,*.tbz2,*.tgz,*.tar.gz,*.tar.xz,*.txz,*.tar.zst,*.tzst},
-        \<application/x-tar>
+filetype *.tar,*.tar.bz2,*.tbz2,*.tgz,*.tar.gz,*.tar.xz,*.txz
        \ {Mount with archivemount}
        \ FUSE_MOUNT|archivemount %SOURCE_FILE %DESTINATION_DIR,
 fileviewer *.tgz,*.tar.gz tar -tzf %c
 fileviewer *.tar.bz2,*.tbz2 tar -tjf %c
-fileviewer *.tar.xz,*.txz tar -tJf %c
-fileviewer *.tar.zst,*.tzst tar -t --zstd -f %c
-fileviewer {*.tar},<application/x-tar> tar -tf %c
+fileviewer *.tar.txz,*.txz xz --list %c
+fileviewer *.tar tar -tf %c
 
 " Rar2FsMount and rar archives
-filetype {*.rar},<application/x-rar>
+filetype *.rar
        \ {Mount with rar2fs}
        \ FUSE_MOUNT|rar2fs %SOURCE_FILE %DESTINATION_DIR,
-fileviewer {*.rar},<application/x-rar> unrar v %c
+fileviewer *.rar unrar v %c
 
 " IsoMount
-filetype {*.iso},<application/x-iso9660-image>
+filetype *.iso
        \ {Mount with fuseiso}
        \ FUSE_MOUNT|fuseiso %SOURCE_FILE %DESTINATION_DIR,
 
@@ -321,48 +438,73 @@ filetype *.ftp
        \ FUSE_MOUNT2|curlftpfs -o ftp_port=-,,disable_eprt %PARAM %DESTINATION_DIR %FOREGROUND,
 
 " Fuse7z and 7z archives
-filetype {*.7z},<application/x-7z-compressed>
+filetype *.7z
        \ {Mount with fuse-7z}
        \ FUSE_MOUNT|fuse-7z %SOURCE_FILE %DESTINATION_DIR,
-fileviewer {*.7z},<application/x-7z-compressed> 7z l %c
+fileviewer *.7z 7z l %c
 
 " Office files
-filextype {*.odt,*.doc,*.docx,*.xls,*.xlsx,*.odp,*.pptx,*.ppt},
-         \<application/vnd.openxmlformats-officedocument.*,
-          \application/msword,
-          \application/vnd.ms-excel>
-        \ libreoffice %f &
-fileviewer {*.doc},<application/msword> catdoc %c
-fileviewer {*.docx},
-          \<application/
-           \vnd.openxmlformats-officedocument.wordprocessingml.document>
-         \ docx2txt.pl %f -
-
-" TuDu files
-filetype *.tudu tudu -f %c
-
-" Qt projects
-filextype *.pro qtcreator %f &
+filextype *.odt,*.doc,*.docx,*.xls,*.xlsx,*.odp,*.pptx,*.ppt, *.rtf, libreoffice %f 2> /dev/null &
+"fileviewer *.doc catdoc %c
+"fileviewer *.docx docx2txt.pl %f -
 
 " Directories
 filextype */
         \ {View in thunar}
         \ Thunar %f &,
 
+" Spreadsheet
+filextype *.sc
+        \ {Open with sc-im}
+        \ sc-im %f,
+""Preview
+"fileviewer *.pdf
+"    \ vifmimg pdfpreview %px %py %pw %ph %c
+"    \ %pc
+"    \ vifmimg clear
+"
+"fileviewer *.epub
+"    \ vifmimg epubpreview %px %py %pw %ph %c
+"    \ %pc
+"    \ vifmimg clear
+"
+"fileviewer *.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,
+"        \*.fl[icv],*.m2v,*.mov,*.webm,*.ts,*.mts,*.m4v,*.r[am],*.qt,*.divx,
+"    \ vifmimg videopreview %px %py %pw %ph %c
+"    \ %pc
+"    \ vifmimg clear
+"
+"fileviewer *.bmp,*.jpg,*.jpeg,*.png,*.xpm
+"    \ vifmimg draw %px %py %pw %ph %c
+"    \ %pc
+"    \ vifmimg clear
+"
+"fileviewer *.gif
+"\ vifmimg gifpreview %px %py %pw %ph %c
+"    \ %pc
+"    \ vifmimg clear
+"
+"fileviewer *.ico
+"    \ vifmimg magickpreview %px %py %pw %ph %c
+"    \ %pc
+"    \ vifmimg clear
+
+
+
 " Syntax highlighting in preview
 "
 " Explicitly set highlight type for some extensions
 "
 " 256-color terminal
-" fileviewer *.[ch],*.[ch]pp highlight -O xterm256 -s dante --syntax c %c
-" fileviewer Makefile,Makefile.* highlight -O xterm256 -s dante --syntax make %c
-"
-" 16-color terminal
-" fileviewer *.c,*.h highlight -O ansi -s dante %c
+ "fileviewer *.[ch],*.[ch]pp highlight -O xterm256 -s dante --syntax c %c
+ "fileviewer Makefile,Makefile.* highlight -O xterm256 -s dante --syntax make %c
+""
+ "16-color terminal
+ "fileviewer *.c,*.h highlight -O ansi -s dante %c
 "
 " Or leave it for automatic detection
 "
-" fileviewer *[^/] pygmentize -O style=monokai -f console256 -g
+ "fileviewer *[^/] pygmentize -O style=monokai -f console256 -g
 
 " Displaying pictures in terminal
 "
@@ -375,15 +517,13 @@ filextype */
 " for unknown file types.
 " For *nix:
 " filetype * xdg-open
-" For OS X:
-" filetype * open
-" For Windows:
-" filetype * start, explorer %"f &
 
 " ------------------------------------------------------------------------------
 
-" What should be saved automatically between vifm sessions.  Drop "savedirs"
-" value if you don't want vifm to remember last visited directories for you.
+" What should be saved automatically between vifm runs
+" Like in previous versions of vifm
+" set vifminfo=options,filetypes,commands,bookmarks,dhistory,state,cs
+" Like in vi
 set vifminfo=dhistory,savedirs,chistory,state,tui,shistory,
     \phistory,fhistory,dirstack,registers,bookmarks,bmarks
 
@@ -397,14 +537,21 @@ set vifminfo=dhistory,savedirs,chistory,state,tui,shistory,
 
 " Filter-out build and temporary files
 "
-" filter! {*.lo,*.o,*.d,*.class,*.pyc,*.pyo,.*~}
+" filter! /^.*\.(lo|o|d|class|py[co])$|.*~$/
 
 " ------------------------------------------------------------------------------
 
 " Sample mappings
 
+" Preview
+map > :!vifmimg inc<CR>
+map < :!vifmimg dec<CR>
+
 " Start shell in current directory
 nnoremap s :shell<cr>
+
+" Zip command atalho
+map æ :zip<cr>
 
 " Display sorting dialog
 nnoremap S :sort<cr>
@@ -413,76 +560,36 @@ nnoremap S :sort<cr>
 nnoremap w :view<cr>
 vnoremap w :view<cr>gv
 
-" Open file in existing instance of gvim
-nnoremap o :!gvim --remote-tab-silent %f<cr>
-" Open file in new instance of gvim
-nnoremap O :!gvim %f<cr>
-
 " Open file in the background using its default program
 nnoremap gb :file &<cr>l
 
-" Interaction with system clipboard
-if has('win')
-    " Yank current directory path to Windows clipboard with forward slashes
-    nnoremap yp :!echo %"d:gs!\!/! %i | clip<cr>
-    " Yank path to current file to Windows clipboard with forward slashes
-    nnoremap yf :!echo %"c:gs!\!/! %i | clip<cr>
-elseif executable('xclip')
-    " Yank current directory path into the clipboard
-    nnoremap yd :!echo %d | xclip %i<cr>
-    " Yank current file path into the clipboard
-    nnoremap yf :!echo %c:p | xclip %i<cr>
-elseif executable('xsel')
-    " Yank current directory path into primary and selection clipboards
-    nnoremap yd :!echo -n %d | xsel --input --primary %i &&
-                \ echo -n %d | xsel --clipboard --input %i<cr>
-    " Yank current file path into into primary and selection clipboards
-    nnoremap yf :!echo -n %c:p | xsel --input --primary %i &&
-                \ echo -n %c:p | xsel --clipboard --input %i<cr>
-endif
+" Yank current directory path into the clipboard
+nnoremap yd :!echo %d | xclip -selection clipboard %i<cr>
+
+" Yank current file path into the clipboard
+nnoremap yf :!echo %c:p | xclip -selection clipboard %i<cr>
 
 " Mappings for faster renaming
 nnoremap I cw<c-a>
-nnoremap cc cw<c-u>
+nnoremap C cw<c-u>
+nnoremap cc cW<c-u>
+"nnoremap cc cW
 nnoremap A cw
 
-" Open console in current directory
-nnoremap ,t :!xterm &<cr>
-
 " Open editor to edit vifmrc and apply settings after returning to vifm
-nnoremap ,c :write | edit $MYVIFMRC | restart full<cr>
-" Open gvim to edit vifmrc
-nnoremap ,C :!gvim --remote-tab-silent $MYVIFMRC &<cr>
+
+nnoremap ,c :write | edit $MYVIFMRC | restart<cr>
 
 " Toggle wrap setting on ,w key
 nnoremap ,w :set wrap!<cr>
 
-" Example of standard two-panel file managers mappings
-nnoremap <f3> :!less %f<cr>
-nnoremap <f4> :edit<cr>
-nnoremap <f5> :copy<cr>
-nnoremap <f6> :move<cr>
-nnoremap <f7> :mkdir<space>
-nnoremap <f8> :delete<cr>
-
-" Midnight commander alike mappings
-" Open current directory in the other pane
-nnoremap <a-i> :sync<cr>
-" Open directory under cursor in the other pane
-nnoremap <a-o> :sync %c<cr>
-" Swap panes
-nnoremap <c-u> <c-w>x
-
-" ------------------------------------------------------------------------------
-
-" Various customization examples
 
 " Use ag (the silver searcher) instead of grep
-"
+
 " set grepprg='ag --line-numbers %i %a %s'
 
 " Add additional place to look for executables
-"
+
 " let $PATH = $HOME.'/bin/fuse:'.$PATH
 
 " Block particular shortcut
@@ -497,3 +604,56 @@ nnoremap <c-u> <c-w>x
 "     vifm --server-name "$VIFM_SERVER_NAME" --remote +"cd '$PWD'"
 "
 " let $VIFM_SERVER_NAME = v:servername
+
+"My remaps
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+" map <C-l> <C-w>l
+map <C-o> <C-w>o
+map <C-s> <C-w>s
+map <C-v> <C-w>v
+map ç :!dtrx %c<cr>
+" Execute python script
+map ô :!python %c<cr>
+map Ô :!python %c 
+map é :!./%c<cr>
+map ó :!source /opt/OpenFOAM/OpenFOAM-v2012/etc/bashrc && ./%c<cr>
+map ® :!source /opt/OpenFOAM/OpenFOAM-v2012/etc/bashrc && paraFoam 2> /dev/null &<cr>
+map Ó :!source /opt/OpenFOAM/OpenFOAM-v2012/etc/bashrc && 
+nmap ï ZZ
+
+" Force open in vim
+map <C-l> :!nvim %c<cr>
+
+" My sets
+set rnu
+
+" Dragon-drag-drop
+vmap ã :!dragon-drag-and-drop -a -x %f<cr>
+nmap ã :!dragon-drag-and-drop -a -x %f<cr>
+
+" Getbib
+nmap ;g :!getbib %c >> /home/pedro/dados/faculdade/bibliography/bibliography.bib<cr>
+
+map > :!vifmimg inc<CR>
+map < :!vifmimg dec<CR>
+
+" GETTING ICONS TO DISPLAY IN VIFM
+" You need the next 14 lines!
+
+
+" file types
+set classify=' :dir:/, :exe:, :reg:, :link:'
+" various file names
+set classify+=' ::../::, ::*.sh::, ::*.[hc]pp::, ::*.[hc]::, ::/^copying|license$/::, ::.git/,,*.git/::, ::*.epub,,*.fb2,,*.djvu::, ::*.pdf::, ::*.cbz::, ::*.htm,,*.html,,**.[sx]html,,*.xml::'
+" archives
+set classify+=' ::*.7z,,*.ace,,*.arj,,*.bz2,,*.cpio,,*.deb,,*.dz,,*.gz,,*.jar,,*.lzh,,*.lzma,,*.rar,,*.rpm,,*.rz,,*.tar,,*.taz,,*.tb2,,*.tbz,,*.tbz2,,*.tgz,,*.tlz,,*.trz,,*.txz,,*.tz,,*.tz2,,*.xz,,*.z,,*.zip,,*.zoo::'
+" images
+set classify+=' ::*.bmp,,*.gif,,*.jpeg,,*.jpg,,*.ico,,*.png,,*.ppm,,*.svg,,*.svgz,,*.tga,,*.tif,,*.tiff,,*.xbm,,*.xcf,,*.xpm,,*.xspf,,*.xwd::'
+" audio
+set classify+=' ::*.aac,,*.anx,,*.asf,,*.au,,*.axa,,*.flac,,*.m2a,,*.m4a,,*.mid,,*.midi,,*.mp3,,*.mpc,,*.oga,,*.ogg,,*.ogx,,*.ra,,*.ram,,*.rm,,*.spx,,*.wav,,*.wma,,*.ac3::'
+" media
+set classify+=' ::*.avi,,*.ts,,*.axv,,*.divx,,*.m2v,,*.m4p,,*.m4v,,.mka,,*.mkv,,*.mov,,*.mp4,,*.flv,,*.mp4v,,*.mpeg,,*.mpg,,*.nuv,,*.ogv,,*.pbm,,*.pgm,,*.qt,,*.vob,,*.wmv,,*.xvid::'
+" office files
+set classify+=' ::*.doc,,*.docx::, ::*.xls,,*.xls[mx]::, ::*.pptx,,*.ppt::'
