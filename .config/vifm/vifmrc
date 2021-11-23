@@ -341,13 +341,14 @@ filetype *.[1-8] man ./%c
 fileviewer *.[1-8] man ./%c | col -b
 
 " Images
-filextype *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm, *.emf
+filextype *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.emf
         \ {View in sxiv}
         \ sxiv %f &,
         \ {View in gpicview}
         \ gpicview %c,
         \ {View in shotwell}
         \ shotwell,
+
 fileviewer *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm
          \ convert -identify %f -verbose /dev/null
 
