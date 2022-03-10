@@ -9,9 +9,6 @@
 #clipmenud &
 #st -e etc_mine &
 #xflux -l -22.0033 -g -47.8879 &
-anydesk &
-st -e ergo &
-sudo corectrl &
 setxkbmap -layout us -variant altgr-intl -option nodeadkeys
 [[ -f ~/.config/X11/xmodmap ]] && xmodmap ~/.config/X11/xmodmap
 [ -f /etc/xprofile ] && . /etc/xprofile
